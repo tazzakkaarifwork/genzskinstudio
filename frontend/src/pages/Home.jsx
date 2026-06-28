@@ -1492,7 +1492,37 @@ const Home = () => {
           </div>
         </Container>
       </section>
-
+      {/* ── COMMUNITY MEDIA BANNER ── */}
+      {heroData?.mediaBannerUrl && (
+        <section style={{ background: '#fff', padding: '0 0 48px' }}>
+          <Container>
+            <div style={{
+              borderRadius: '20px',
+              overflow: 'hidden',
+              border: '1px solid #ebebeb',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.04)',
+              background: '#000',
+            }}>
+              {heroData.mediaBannerType === 'video' ? (
+                <video
+                  src={heroData.mediaBannerUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', height: 'auto', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
+                />
+              ) : (
+                <img
+                  src={heroData.mediaBannerUrl}
+                  alt="Community Feature"
+                  style={{ width: '100%', height: 'auto', maxHeight: '600px', display: 'block', objectFit: 'cover' }}
+                />
+              )}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ── ABOUT ── */}
       <section className="about-section">
