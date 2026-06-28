@@ -159,7 +159,7 @@ const Navbar = () => {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%) scale(1.3);
+          transform: translate(-50%, -50%) scale(1.7);
           height: 100%;
           width: auto;
           object-fit: contain;
@@ -171,7 +171,7 @@ const Navbar = () => {
         }
         .gz-nav.scrolled .gz-logo {
           filter: invert(1);
-          transform: translate(-50%, -50%) scale(1.3);
+          transform: translate(-50%, -50%) scale(1.7);
         }
         @media (min-width: 992px) {
           .gz-logo-wrapper {
@@ -179,14 +179,14 @@ const Navbar = () => {
             width: 105px;
           }
           .gz-logo {
-            transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.9);
           }
           .gz-nav.scrolled .gz-logo-wrapper {
             height: 48px;
             width: 90px;
           }
           .gz-nav.scrolled .gz-logo {
-            transform: translate(-50%, -50%) scale(1.4);
+            transform: translate(-50%, -50%) scale(1.9);
           }
         }
         .gz-logo-drawer {
