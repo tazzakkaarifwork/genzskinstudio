@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Secrets - NEVER push to GitHub
+.env
+.env.local
+.env.production
+*.env
+
+# Build
+frontend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local uploads (use Cloudinary for production later)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+.vercel
+.env*

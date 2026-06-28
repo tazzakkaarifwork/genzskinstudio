@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://genzskinstudio.vercel.app/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://genzskinstudio.vercel.app/uploads/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
