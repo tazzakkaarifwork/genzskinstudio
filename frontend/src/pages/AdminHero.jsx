@@ -581,79 +581,140 @@ const AdminHero = () => {
               🎥 Homepage Media Banner (Community Section)
             </h6>
             <p className="text-muted small mb-3">
-              Upload a banner image or high-quality video for the community section.
+              Upload a full-width image or video shown after the Community Reviews section.
             </p>
 
-            {/* Current Media Banner */}
+            {/* ── Current Banner ── */}
             {mediaBannerUrl ? (
-              <div className="mb-4">
-                <p className="small fw-bold text-muted text-uppercase mb-2" style={{ fontSize: '0.7rem', letterSpacing: '0.1em' }}>
-                  Current Media Banner ({mediaBannerType})
-                </p>
-                <div style={{ position: 'relative', width: '100%', height: '180px', borderRadius: '12px', overflow: 'hidden', border: '1px solid #ddd' }}>
+              <div className="mb-3">
+                {/* Type badge */}
+                <div className="d-flex align-items-center justify-content-between mb-2">
+                  <span
+                    className="text-uppercase fw-bold"
+                    style={{
+                      fontSize: '0.65rem', letterSpacing: '0.12em',
+                      background: mediaBannerType === 'video' ? '#0f0f0f' : '#166534',
+                      color: '#fff', padding: '3px 10px', borderRadius: '4px'
+                    }}
+                  >
+                    {mediaBannerType === 'video' ? '▶ Video' : '🖼 Image'} — Active
+                  </span>
+                </div>
+
+                {/* Preview */}
+                <div style={{ position: 'relative', width: '100%', height: '200px', borderRadius: '10px', overflow: 'hidden', border: '1.5px solid #e0e0e0', background: '#000' }}>
                   {mediaBannerType === 'video' ? (
                     <video src={mediaBannerUrl} muted controls style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
                     <img src={mediaBannerUrl} alt="Media Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   )}
-                  <button
+                </div>
+
+                {/* Action buttons */}
+                <div className="d-flex gap-2 mt-3">
+                  {/* Replace / Edit = just upload a new one (overwrites) */}
+                  <label
+                    htmlFor="media-replace-input"
+                    style={{
+                      flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      gap: '6px', height: '38px', cursor: 'pointer',
+                      background: '#f5f5f5', border: '1.5px solid #ddd',
+                      borderRadius: '0', fontWeight: '700', fontSize: '0.75rem',
+                      textTransform: 'uppercase', letterSpacing: '0.08em', color: '#333'
+                    }}
+                  >
+                    ✎ Replace / Edit
+                    <input
+                      id="media-replace-input"
+                      type="file"
+                      accept="image/*,video/*"
+                      style={{ display: 'none' }}
+                      onChange={handleMediaFileChange}
+                    />
+                  </label>
+
+                  <Button
+                    variant="danger"
+                    className="rounded-0 fw-bold small text-uppercase"
+                    style={{ flex: 1, height: '38px', fontSize: '0.75rem', letterSpacing: '0.08em' }}
                     onClick={handleDeleteMediaBanner}
                     disabled={mediaDeleting}
-                    style={{
-                      position: 'absolute', top: '10px', right: '10px',
-                      background: 'rgba(0,0,0,0.75)', color: '#fff', border: 'none',
-                      borderRadius: '50%', width: '28px', height: '28px',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontWeight: 'bold', fontSize: '15px', zIndex: 10
-                    }}
-                    title="Remove media banner"
                   >
-                    ×
-                  </button>
+                    {mediaDeleting ? 'Deleting…' : '🗑 Delete Banner'}
+                  </Button>
                 </div>
+
+                {/* Show replace preview if a new file selected */}
+                {mediaPreview && (
+                  <div className="mt-3 border rounded p-2 bg-light">
+                    <div className="small text-muted mb-2 text-uppercase fw-bold" style={{ fontSize: '0.65rem' }}>New Upload Preview:</div>
+                    {mediaPreviewType === 'video' ? (
+                      <video src={mediaPreview} muted controls style={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '6px' }} />
+                    ) : (
+                      <img src={mediaPreview} alt="Preview" style={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '6px' }} />
+                    )}
+                    <div className="d-flex gap-2 mt-2">
+                      <Button
+                        variant="dark"
+                        size="sm"
+                        className="rounded-0 fw-bold text-uppercase w-100"
+                        onClick={handleUploadMediaBanner}
+                        disabled={mediaUploading}
+                      >
+                        {mediaUploading ? 'Uploading…' : '⬆ Confirm Replace'}
+                      </Button>
+                      <Button
+                        variant="light"
+                        size="sm"
+                        className="rounded-0 fw-bold text-uppercase border"
+                        onClick={() => { setMediaFile(null); setMediaPreview(''); }}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <div className="text-center py-4 mb-4 border border-dashed rounded" style={{ borderStyle: 'dashed', borderColor: '#ddd', background: '#fafafa' }}>
-                <p className="text-muted small mb-0">No media banner uploaded yet.</p>
+              /* ── No banner yet — upload form ── */
+              <div>
+                <div className="text-center py-4 mb-3 border rounded" style={{ borderStyle: 'dashed', borderColor: '#ccc', background: '#fafafa' }}>
+                  <div style={{ fontSize: '2rem', marginBottom: '8px' }}>📂</div>
+                  <p className="text-muted small mb-0 fw-bold">No media banner uploaded yet</p>
+                  <p className="text-muted" style={{ fontSize: '0.72rem' }}>Upload an image or video below</p>
+                </div>
+
+                <div className="d-flex align-items-start gap-2">
+                  <div className="flex-grow-1">
+                    <Form.Control
+                      className="rounded-0 border-dark"
+                      type="file"
+                      accept="image/*,video/*"
+                      onChange={handleMediaFileChange}
+                    />
+                    <Form.Text className="text-muted">Supports images (JPG/PNG/WEBP) or MP4 videos.</Form.Text>
+                    {mediaPreview && (
+                      <div className="mt-2 border rounded p-2 bg-light">
+                        {mediaPreviewType === 'video' ? (
+                          <video src={mediaPreview} muted controls style={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '6px' }} />
+                        ) : (
+                          <img src={mediaPreview} alt="Preview" style={{ width: '100%', height: '110px', objectFit: 'cover', borderRadius: '6px' }} />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <Button
+                    variant="dark"
+                    className="rounded-0 px-3 fw-bold small text-uppercase"
+                    onClick={handleUploadMediaBanner}
+                    disabled={mediaUploading || !mediaFile}
+                    style={{ whiteSpace: 'nowrap', height: '38px' }}
+                  >
+                    {mediaUploading ? 'Uploading…' : 'Upload'}
+                  </Button>
+                </div>
               </div>
             )}
-
-            {/* Upload Media Form */}
-            <div>
-              <Form.Label className="small fw-bold text-uppercase text-muted">Upload Media Banner</Form.Label>
-              <div className="d-flex align-items-start gap-3">
-                <div className="flex-grow-1">
-                  <Form.Control
-                    className="rounded-0 border-dark"
-                    type="file"
-                    accept="image/*,video/*"
-                    onChange={handleMediaFileChange}
-                  />
-                  <Form.Text className="text-muted">
-                    Supports high-resolution images or MP4 videos.
-                  </Form.Text>
-                  {mediaPreview && (
-                    <div className="mt-3 border rounded p-2 bg-light">
-                      <div className="small text-muted mb-2 text-uppercase fw-bold" style={{ fontSize: '0.65rem' }}>Upload Preview:</div>
-                      {mediaPreviewType === 'video' ? (
-                        <video src={mediaPreview} muted controls style={{ width: '100%', height: '120px', objectFit: 'cover' }} />
-                      ) : (
-                        <img src={mediaPreview} alt="Preview" style={{ width: '100%', height: '120px', objectFit: 'cover' }} />
-                      )}
-                    </div>
-                  )}
-                </div>
-                <Button
-                  variant="dark"
-                  className="rounded-0 px-4 fw-bold small text-uppercase"
-                  onClick={handleUploadMediaBanner}
-                  disabled={mediaUploading || !mediaFile}
-                  style={{ whiteSpace: 'nowrap', height: '38px' }}
-                >
-                  {mediaUploading ? 'Uploading…' : 'Upload'}
-                </Button>
-              </div>
-            </div>
           </Card>
         </Col>
       </Row>
