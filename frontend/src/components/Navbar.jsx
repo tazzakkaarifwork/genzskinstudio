@@ -152,41 +152,41 @@ const Navbar = () => {
           display: block;
           overflow: hidden;
           position: relative;
-          height: 70px;
-          width: 130px;
+          height: 48px;
+          width: 90px;
         }
         .gz-logo {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%, -50%) scale(1.7);
+          transform: translate(-50%, -50%) scale(1.3);
           height: 100%;
           width: auto;
           object-fit: contain;
           transition: transform 0.3s ease, filter 0.3s ease;
         }
         .gz-nav.scrolled .gz-logo-wrapper {
-          height: 55px;
-          width: 105px;
+          height: 42px;
+          width: 80px;
         }
         .gz-nav.scrolled .gz-logo {
           filter: invert(1);
-          transform: translate(-50%, -50%) scale(1.7);
+          transform: translate(-50%, -50%) scale(1.3);
         }
         @media (min-width: 992px) {
           .gz-logo-wrapper {
-            height: 90px;
-            width: 170px;
+            height: 56px;
+            width: 105px;
           }
           .gz-logo {
-            transform: translate(-50%, -50%) scale(1.9);
+            transform: translate(-50%, -50%) scale(1.4);
           }
           .gz-nav.scrolled .gz-logo-wrapper {
-            height: 70px;
-            width: 130px;
+            height: 48px;
+            width: 90px;
           }
           .gz-nav.scrolled .gz-logo {
-            transform: translate(-50%, -50%) scale(1.9);
+            transform: translate(-50%, -50%) scale(1.4);
           }
         }
         .gz-logo-drawer {

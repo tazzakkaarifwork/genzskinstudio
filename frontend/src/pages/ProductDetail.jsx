@@ -38,28 +38,58 @@ const AccordionItem = ({ title, children, defaultOpen = false }) => {
 const AccordionDetails = ({ product }) => {
   const sections = [
     product.dermatologistNotes && {
-      title: '🧪 Dermatologist Notes',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11m0 0H5m4 0h10m0-11v11m0 0a2 2 0 01-2 2H7a2 2 0 01-2-2"/></svg>
+          Dermatologist Notes
+        </span>
+      ),
       content: <TextAsList text={product.dermatologistNotes} />,
       badge: true,
     },
     product.whyYoullLoveIt && {
-      title: '♥ Why You\'ll Love It',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Why You'll Love It
+        </span>
+      ),
       content: <TextAsList text={product.whyYoullLoveIt} />,
     },
     product.perfectFor && {
-      title: '🎯 Perfect For',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          Perfect For
+        </span>
+      ),
       content: <TextAsList text={product.perfectFor} />,
     },
     product.ingredients && {
-      title: '🌿 Ingredients',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a9 9 0 00-9 9c0 4.17 2.84 7.67 6.69 8.69L12 22l2.31-2.31C18.16 18.67 21 15.17 21 11a9 9 0 00-9-9z"/><path d="M12 6v6l4 2"/></svg>
+          Ingredients
+        </span>
+      ),
       content: <TextAsList text={product.ingredients} />,
     },
     product.howToUse && {
-      title: '📋 How to Use',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          How to Use
+        </span>
+      ),
       content: <TextAsList text={product.howToUse} ordered />,
     },
     product.additionalInfo && {
-      title: 'ℹ️ Additional Information',
+      title: (
+        <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Additional Information
+        </span>
+      ),
       content: <TextAsList text={product.additionalInfo} />,
     },
   ].filter(Boolean);
@@ -537,6 +567,7 @@ const ProductDetail = () => {
           font-weight: 600;
           color: #166534;
           margin-bottom: 14px;
+        }
 
         .pd-actions {
           display: flex;

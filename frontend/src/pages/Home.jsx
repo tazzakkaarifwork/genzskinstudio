@@ -1493,53 +1493,6 @@ const Home = () => {
         </Container>
       </section>
 
-      {/* ── COMMUNITY MEDIA BANNER SECTION ── */}
-      {heroData?.mediaBannerUrl && (
-        <section className="media-banner-section py-4" style={{ background: '#ffffff' }}>
-          <Container>
-            <div className="media-banner-wrapper" style={{
-              position: 'relative',
-              borderRadius: '24px',
-              overflow: 'hidden',
-              background: '#fcfcfc',
-              border: '1px solid #ebebeb',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
-              width: '100%',
-              margin: '20px 0'
-            }}>
-              {heroData.mediaBannerType === 'video' ? (
-                <video 
-                  src={heroData.mediaBannerUrl} 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
-                  controls
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: '550px',
-                    display: 'block',
-                    objectFit: 'cover'
-                  }}
-                />
-              ) : (
-                <img 
-                  src={heroData.mediaBannerUrl} 
-                  alt="Community Media Banner" 
-                  style={{
-                    width: '100%',
-                    height: 'auto',
-                    maxHeight: '550px',
-                    display: 'block',
-                    objectFit: 'cover'
-                  }} 
-                />
-              )}
-            </div>
-          </Container>
-        </section>
-      )}
 
       {/* ── ABOUT ── */}
       <section className="about-section">
