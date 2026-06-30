@@ -646,8 +646,8 @@ const Navbar = () => {
         }
 
         /* Push body down so content not hidden behind fixed navbar */
-        body { padding-top: 98px; }
-        @media (max-width: 992px) { body { padding-top: 86px; } }
+        body { padding-top: 112px; }
+        @media (max-width: 992px) { body { padding-top: 104px; } }
       `}</style>
 
       <header className={`gz-header ${scrolled ? 'scrolled' : 'top'}`}>

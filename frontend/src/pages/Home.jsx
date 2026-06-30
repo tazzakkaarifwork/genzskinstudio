@@ -773,7 +773,7 @@ const Home = () => {
         }
 
         /* ── HERO ── */
-        .hero-section { position:relative; width: 100%; aspect-ratio: 2.33 / 1; min-height: auto; overflow:hidden; background:#000; padding: 0; }
+        .hero-section { position:relative; width: 100%; aspect-ratio: 2.15 / 1; min-height: auto; overflow:hidden; background:#000; padding: 0; margin-top: 12px; }
         .hero-bg { position:absolute; inset:0; object-fit:cover; width: 100%; height: 100%; transform:scale(1); }
         .hero-grain { position:absolute; inset:0; opacity:0.04; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); pointer-events:none; }
         .hero-gradient { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.1) 40%,rgba(0,0,0,0.8) 100%); }
@@ -1107,9 +1107,10 @@ const Home = () => {
         @media (max-width:768px) {
           .hero-section {
             height: auto !important;
-            min-height: auto !important;
-            aspect-ratio: 2.33 / 1 !important;
+            min-height: 240px !important;
+            aspect-ratio: 1.6 / 1 !important;
             padding: 0 !important;
+            margin-top: 10px !important;
           }
           .hero-bg {
             background-position: center center !important;

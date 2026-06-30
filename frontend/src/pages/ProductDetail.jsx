@@ -16,7 +16,41 @@ import Footer from "../components/Footer";
 const TextAsList = ({ text, ordered = false }) => {
   const lines = (text || '').split('\n').map(l => l.trim()).filter(Boolean);
   if (lines.length <= 1) return <p>{text}</p>;
-  if (ordered) return <ol>{lines.map((l, i) => <li key={i}>{l}</li>)}</ol>;
+  
+  if (ordered) {
+    return (
+      <div className="pd-steps-list">
+        {lines.map((line, i) => {
+          let clean = line.replace(/^\d+[\.\:\s\-]+/, '').trim();
+          const stepRegex = /^(Step\s*\d+)[\s\-\:]*(.*)$/i;
+          const match = clean.match(stepRegex);
+          
+          if (match) {
+            const stepTitle = match[1];
+            const stepContent = match[2];
+            return (
+              <div key={i} className="pd-step-item" style={{ marginBottom: '16px' }}>
+                <div className="pd-step-title" style={{ fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', color: '#1a202c', marginBottom: '2px' }}>
+                  {stepTitle}
+                </div>
+                <p className="pd-step-text" style={{ fontSize: '0.82rem', color: '#555', margin: 0, lineHeight: '1.6' }}>
+                  {stepContent}
+                </p>
+              </div>
+            );
+          } else {
+            return (
+              <div key={i} className="pd-step-item-extra" style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '12px', fontSize: '0.82rem', color: '#555', lineHeight: '1.6' }}>
+                <span style={{ color: '#1a202c', fontWeight: 'bold' }}>•</span>
+                <p style={{ margin: 0 }}>{clean}</p>
+              </div>
+            );
+          }
+        })}
+      </div>
+    );
+  }
+  
   return <ul>{lines.map((l, i) => <li key={i}>{l}</li>)}</ul>;
 };
 
