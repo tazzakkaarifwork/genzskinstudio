@@ -283,6 +283,32 @@ const Checkout = () => {
         discountAmount: discountAmount,
       };
       const { data } = await api.post('/orders', payload);
+
+      // ✅ TikTok Pixel — Fire Purchase event after successful order
+      try {
+        if (typeof window !== 'undefined' && window.ttq) {
+          window.ttq.track('PlaceAnOrder', {
+            content_type: 'product',
+            quantity: orderItems.reduce((sum, item) => sum + item.quantity, 0),
+            description: orderItems.map(i => i.name).join(', '),
+            content_id: orderItems.map(i => i.product).join(','),
+            currency: 'PKR',
+            value: finalTotal,
+          });
+          // Also fire the standard Purchase event
+          window.ttq.track('Purchase', {
+            content_type: 'product',
+            quantity: orderItems.reduce((sum, item) => sum + item.quantity, 0),
+            description: orderItems.map(i => i.name).join(', '),
+            content_id: orderItems.map(i => i.product).join(','),
+            currency: 'PKR',
+            value: finalTotal,
+          });
+        }
+      } catch (pixelErr) {
+        console.warn('TikTok pixel error:', pixelErr);
+      }
+
       clearCart();
       navigate('/order-success', { state: { order: data } });
     } catch (err) {
