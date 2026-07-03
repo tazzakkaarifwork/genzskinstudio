@@ -5,6 +5,7 @@ import User from '../models/User.js';
 import RetentionSettings from '../models/RetentionSettings.js';
 import { sendOrderInvoiceEmail } from '../utils/invoiceEmail.js';
 import { sendStatusUpdateEmail } from '../utils/statusEmail.js';
+import { sendTikTokPurchaseEvent } from '../utils/tiktokEvents.js';
 
 // Predefined influencer coupons
 const INFLUENCER_COUPONS = {
@@ -137,6 +138,12 @@ export const createOrder = async (req, res) => {
     } catch (err) {
       console.error(`Failed to send order invoice email for order ${order._id}:`, err);
     }
+
+    // ✅ TikTok Server-Side Event — iOS + Ad Blockers ko bypass karta hai
+    // Non-blocking: order response pe koi asar nahi
+    sendTikTokPurchaseEvent(order).catch(err =>
+      console.error('TikTok server event failed:', err.message)
+    );
 
     res.status(201).json(order);
   } catch (error) {

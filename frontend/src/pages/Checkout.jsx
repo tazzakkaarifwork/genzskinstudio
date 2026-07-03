@@ -284,19 +284,12 @@ const Checkout = () => {
       };
       const { data } = await api.post('/orders', payload);
 
-      // ✅ TikTok Pixel — Fire Purchase event after successful order
+      // ✅ Frontend TikTok Pixel — Backup only
+      // Server-side event bhi ja raha hai, TikTok event_id se duplicates khud hatata hai
       try {
-        if (typeof window !== 'undefined' && window.ttq) {
-          window.ttq.track('PlaceAnOrder', {
-            content_type: 'product',
-            quantity: orderItems.reduce((sum, item) => sum + item.quantity, 0),
-            description: orderItems.map(i => i.name).join(', '),
-            content_id: orderItems.map(i => i.product).join(','),
-            currency: 'PKR',
-            value: finalTotal,
-          });
-          // Also fire the standard Purchase event
+        if (typeof window !== 'undefined' && window.ttq && data?._id) {
           window.ttq.track('Purchase', {
+            event_id: data._id, // ← Duplicate hatane ke liye unique Order ID
             content_type: 'product',
             quantity: orderItems.reduce((sum, item) => sum + item.quantity, 0),
             description: orderItems.map(i => i.name).join(', '),
