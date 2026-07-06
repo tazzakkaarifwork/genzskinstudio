@@ -31,6 +31,7 @@ const AdminDashboard = () => {
 
   const menuItems = [
     { path: '/admin', label: 'Overview', icon: FaChartLine },
+    { path: '/admin/analytics', label: 'Live Traffic', icon: FaUsers },
     { path: '/admin/products', label: 'Products', icon: FaBoxOpen },
     { path: '/admin/categories', label: 'Categories', icon: FaFolderOpen },
     { path: '/admin/orders', label: 'Orders', icon: FaReceipt },

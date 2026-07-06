@@ -3,6 +3,7 @@ import Product from '../models/Product.js';
 import NewsletterSubscription from '../models/NewsletterSubscription.js';
 import User from '../models/User.js';
 import RetentionSettings from '../models/RetentionSettings.js';
+import VisitorSession from '../models/VisitorSession.js';
 import { sendOrderInvoiceEmail } from '../utils/invoiceEmail.js';
 import { sendStatusUpdateEmail } from '../utils/statusEmail.js';
 import { sendTikTokPurchaseEvent } from '../utils/tiktokEvents.js';
@@ -94,6 +95,7 @@ export const createOrder = async (req, res) => {
       couponCode,
       discountAmount,
       trafficSource,
+      sessionId,
     } = req.body;
 
     // Verify stock
@@ -154,6 +156,25 @@ export const createOrder = async (req, res) => {
       discountAmount: discountAmount || 0,
       trafficSource: finalTrafficSource,
     });
+
+    // Link the visitor session to this completed order
+    if (sessionId) {
+      try {
+        await VisitorSession.findOneAndUpdate(
+          { sessionId },
+          {
+            $set: {
+              orderPlaced: true,
+              order: order._id,
+              checkoutStep: 'completed',
+              updatedAt: new Date(),
+            }
+          }
+        );
+      } catch (err) {
+        console.error(`Failed to update visitor session ${sessionId} for order ${order._id}:`, err);
+      }
+    }
 
     // Send invoice email to the customer (awaited to guarantee delivery on serverless platforms like Vercel)
     try {

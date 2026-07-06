@@ -20,6 +20,7 @@ import faqRoutes from './routes/faqRoutes.js';
 import returnPolicyRoutes from './routes/returnPolicyRoutes.js';
 import shippingRoutes from './routes/shippingRoutes.js';
 import marqueeRoutes from './routes/marqueeRoutes.js';
+import analyticsRoutes from './routes/analyticsRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -79,6 +80,7 @@ app.use('/api/faqs', faqRoutes);
 app.use('/api/return-policies', returnPolicyRoutes);
 app.use('/api/shipping', shippingRoutes);
 app.use('/api/marquee', marqueeRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // Global Error Handler Middleware (ensures JSON response is always returned for API errors)
 app.use((err, req, res, next) => {

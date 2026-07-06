@@ -4,6 +4,7 @@ import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
 import api from '../services/api';
+import { trackSession } from '../services/analytics';
 
 const cleanPhoneForDisplay = (phoneStr) => {
   if (!phoneStr) return '';
@@ -49,6 +50,57 @@ const Checkout = () => {
     };
     fetchShipping();
   }, []);
+
+  // Track checkout initiation on mount
+  useEffect(() => {
+    trackSession({
+      checkoutStarted: true,
+      checkoutStep: 'contact',
+      cartItems: cartItems.map(item => ({
+        product: item.product._id,
+        name: item.product.name,
+        price: getProductPrice(item.product),
+        quantity: item.quantity,
+        image: item.product.image || item.product.images?.[0] || '',
+      })),
+      cartTotal: finalTotal,
+    });
+  }, []);
+
+  // Debounced checkout field tracking to monitor progression
+  useEffect(() => {
+    if (cartItems.length === 0) return;
+
+    let step = 'contact';
+    if (formData.firstName || formData.lastName || formData.address || formData.city || formData.phone) {
+      step = 'shipping';
+    }
+    if (differentBilling && (formData.billingFirstName || formData.billingAddress)) {
+      step = 'billing';
+    }
+
+    const timer = setTimeout(() => {
+      trackSession({
+        checkoutStarted: true,
+        checkoutStep: step,
+        checkoutEmail: formData.email,
+        checkoutPhone: formData.phone,
+        checkoutName: `${formData.firstName} ${formData.lastName}`.trim(),
+        checkoutCity: formData.city,
+        checkoutAddress: `${formData.address} ${formData.apartment}`.trim(),
+        cartItems: cartItems.map(item => ({
+          product: item.product._id,
+          name: item.product.name,
+          price: getProductPrice(item.product),
+          quantity: item.quantity,
+          image: item.product.image || item.product.images?.[0] || '',
+        })),
+        cartTotal: finalTotal,
+      });
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [formData, cartItems]);
 
 
   const handleApplyCoupon = async (e) => {
@@ -292,6 +344,7 @@ const Checkout = () => {
         couponCode: appliedCoupons.map(c => c.code).join(', '),
         discountAmount: discountAmount,
         trafficSource: trafficSource || undefined,
+        sessionId: sessionStorage.getItem('gz_session_id') || undefined,
       };
       const { data } = await api.post('/orders', payload);
 

@@ -25,6 +25,29 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    // Sync cart details to visitor session
+    const syncCartSession = async () => {
+      try {
+        const items = cartItems.map(item => ({
+          product: item.product._id,
+          name: item.product.name,
+          price: getProductPrice(item.product),
+          quantity: item.quantity,
+          image: item.product.image || item.product.images?.[0] || '',
+        }));
+        const total = getCartTotal();
+
+        const { trackSession } = await import('../services/analytics');
+        trackSession({
+          cartItems: items,
+          cartTotal: total
+        });
+      } catch (err) {
+        console.warn('Failed to sync cart session:', err);
+      }
+    };
+    syncCartSession();
   }, [cartItems]);
 
   const addToCart = (product, quantity = 1) => {

@@ -36,6 +36,8 @@ import ReturnPolicy from './pages/ReturnPolicy';
 import AdminContacts from './pages/AdminContacts';
 import AdminShipping from './pages/AdminShipping';
 import AdminSales from './pages/AdminSales';
+import AdminAnalytics from './pages/AdminAnalytics';
+import { trackSession } from './services/analytics';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -123,6 +125,9 @@ function App() {
 
         sessionStorage.setItem('gz_traffic_source', JSON.stringify(newSource));
       }
+
+      // Track session activity (page view / heartbeat update)
+      trackSession();
     } catch (err) {
       console.warn('Traffic tracking error:', err);
     }
@@ -159,6 +164,7 @@ function App() {
                   <Route path="categories" element={<AdminCategories />} />
                   <Route path="orders" element={<AdminOrders />} />
                   <Route path="sales" element={<AdminSales />} />
+                  <Route path="analytics" element={<AdminAnalytics />} />
                   <Route path="users" element={<AdminUsers />} />
                   <Route path="reviews" element={<AdminReviews />} />
                   <Route path="retention" element={<AdminRetention />} />
