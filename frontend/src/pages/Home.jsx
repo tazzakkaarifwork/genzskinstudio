@@ -481,8 +481,8 @@ const Home = () => {
         @media (max-width:480px)  { .ref-card-grid { grid-template-columns: 1fr; } }
 
         .ref-card { background:#fff; border-radius:12px; border:1px solid #e8e8e8; overflow:hidden; transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position:relative; height:100%; display:flex; flex-direction:column; box-shadow: 0 2px 8px rgba(0,0,0,0.02); max-width: 270px; width: 100%; margin: 0 auto; }
-        .ref-card:hover { border-color:#0f0f0f; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform:translateY(-4px); }
-        .ref-card-tag { position:absolute; top:10px; right:10px; background:#ff3f6c; color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; z-index:3; pointer-events:none; }
+        .ref-card:hover { border-color: #b8860b; box-shadow: 0 12px 28px rgba(184, 134, 11, 0.12); transform:translateY(-5px); }
+        .ref-card-tag { position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%); color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; z-index:3; pointer-events:none; }
         
         .ref-card-img-wrap { width:100% !important; height:220px; background:#ffffff; position:relative; display:block; overflow:hidden; }
         .ref-card-img-wrap img { width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease; }
@@ -505,14 +505,14 @@ const Home = () => {
         .ref-card-meta { display:flex; align-items:center; gap:4px; margin-bottom:0; }
         .ref-card-price { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
         .ref-card-price-original { font-size:0.72rem; text-decoration:line-through; color:#999; font-weight:400; }
-        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#ff3f6c; margin:0; }
+        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#b8860b; margin:0; }
         .ref-card-price-regular { font-size:0.95rem; font-weight:800; color:#0f0f0f; margin:0; }
         
         .ref-card-actions { margin-top:auto; display:flex; gap:6px; align-items:center; width:100%; }
         
-        .ref-btn-cart { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid #0f0f0f; background:#fff; color:#0f0f0f; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.2s ease; text-align:center; }
-        .ref-btn-cart:hover { background:rgba(15,15,15,0.05); }
-        .ref-btn-cart:disabled { border-color:#ccc; color:#ccc; background:#fff; cursor:not-allowed; }
+        .ref-btn-cart { flex:1; padding:7px 12px; border-radius:20px; border:1.5px solid #b8860b; background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%); color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-align:center; box-shadow: 0 4px 10px rgba(184,134,11,0.15); }
+        .ref-btn-cart:hover { background: linear-gradient(135deg, #9a7009 0%, #b8921e 100%); border-color: #9a7009; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(184,134,11,0.25); }
+        .ref-btn-cart:disabled { border-color:#ccc; color:#ccc; background:#fff; cursor:not-allowed; box-shadow: none; }
         .ref-btn-buy  { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid #0f0f0f; background:#0f0f0f; color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.2s ease; text-align:center; text-decoration:none; }
         .ref-btn-buy:hover { background:#333333; color:#fff; }
  
@@ -532,9 +532,16 @@ const Home = () => {
         }
  
         .ref-wishlist-btn { position:absolute; top:10px; left:10px; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.9); border:1px solid #e0e0e0; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:4; font-size:1rem; transition:all 0.2s ease; color:#888; padding:0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .ref-wishlist-btn:hover { transform:scale(1.1); background:#fff; color:#ff3f6c; border-color:#ff3f6c; }
-        .ref-wishlist-btn.active { color:#ff3f6c; background:#fff; border-color:#ff3f6c; }
-        .ref-section-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+        .ref-wishlist-btn:hover { transform:scale(1.1); background:#fff; color:#b8860b; border-color:#b8860b; }
+        .ref-wishlist-btn.active { color:#b8860b; background:#fffbf0; border-color:#b8860b; }
+        .ref-section-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 16px;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
         .ref-section-header > button.btn-dark { display:none; }
         .ref-section-title { font-size:1.3rem; font-weight:600; color:#111; }
         .ref-section-count { font-size:0.8rem; color:#888; font-weight:500; }
@@ -542,10 +549,44 @@ const Home = () => {
         .ref-empty-icon { font-size:2rem; margin-bottom:12px; }
         .ref-empty p { color:#888; margin-bottom:12px; font-size:0.9rem; }
         .ref-empty-btn { padding:10px 24px; border-radius:24px; border:1px solid #111; background:#111; color:#fff; font-size:0.8rem; font-weight:600; cursor:pointer; }
-        .ref-sort-wrap { margin-top:20px; max-width: 100%; box-sizing: border-box; }
-        .ref-sort-label { font-size:0.8rem; font-weight:700; color:#111; margin-bottom:10px; display:block; }
-        .ref-sort-select { width:100%; max-width: 100%; box-sizing: border-box; padding:10px 14px; border-radius:10px; border:1px solid #e0e0e0; background:#fff; font-size:0.8rem; color:#555; cursor:pointer; outline:none; }
-        .ref-sort-select:focus { border-color: var(--pink-accent); }
+        .ref-sort-wrap {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-shrink: 0;
+          background: #faf8f4;
+          border: 1px solid #e0d9cc;
+          border-radius: 100px;
+          padding: 5px 5px 5px 14px;
+        }
+        .ref-sort-label {
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #666;
+          white-space: nowrap;
+          letter-spacing: 0.02em;
+        }
+        .ref-sort-select {
+          border: none;
+          background: transparent;
+          font-size: 0.78rem;
+          color: #333;
+          cursor: pointer;
+          outline: none;
+          padding: 4px 28px 4px 6px;
+          -webkit-appearance: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 6px center;
+          font-weight: 500;
+        }
+        .ref-sort-select:focus { outline: none; }
+        @media (max-width: 576px) {
+          .ref-sort-wrap { padding: 4px 4px 4px 10px; }
+          .ref-sort-label { display: none; }
+          .ref-sort-select { font-size: 0.75rem; }
+        }
 
         /* ── QUICK VIEW / HOME NEWSLETTER STYLES ── */
         .ref-quick-view-btn {
@@ -1290,7 +1331,7 @@ const Home = () => {
       </div>
 
       {/* ── SIDEBAR + PRODUCT GRID ── */}
-      <section id="products-section" style={{ background: '#ffffff', padding: '48px 0 64px' }}>
+      <section id="products-section" style={{ background: '#ffffff', padding: '12px 0 64px' }}>
         <Container>
           <Row className="g-4">
             <Col lg={3} md={4}>
