@@ -263,6 +263,16 @@ const Checkout = () => {
         image: item.product.image,
         quantity: item.quantity,
       }));
+      let trafficSource = null;
+      try {
+        const storedSource = sessionStorage.getItem('gz_traffic_source');
+        if (storedSource) {
+          trafficSource = JSON.parse(storedSource);
+        }
+      } catch (e) {
+        console.warn('Attribution read error:', e);
+      }
+
       const payload = {
         orderItems,
         contact: { email: formData.email, receiveNews: formData.receiveNews },
@@ -281,6 +291,7 @@ const Checkout = () => {
         saveInfo: formData.saveInfo,
         couponCode: appliedCoupons.map(c => c.code).join(', '),
         discountAmount: discountAmount,
+        trafficSource: trafficSource || undefined,
       };
       const { data } = await api.post('/orders', payload);
 

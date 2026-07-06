@@ -69,6 +69,64 @@ class ErrorBoundary extends React.Component {
 function App() {
   const location = useLocation();
   const hideNavbarRoutes = ['/order-success', '/admin-login'];
+
+  React.useEffect(() => {
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const utm_source = searchParams.get('utm_source');
+      const utm_medium = searchParams.get('utm_medium');
+      const utm_campaign = searchParams.get('utm_campaign');
+      const fbclid = searchParams.get('fbclid');
+      const ttclid = searchParams.get('ttclid');
+      const referrer = document.referrer;
+
+      let sourceData = null;
+      const existing = sessionStorage.getItem('gz_traffic_source');
+      if (existing) {
+        sourceData = JSON.parse(existing);
+      }
+
+      // Store traffic source if none exists yet, or if new UTM parameters are active in current URL
+      if (!sourceData || utm_source || fbclid || ttclid) {
+        const isExternalReferrer = referrer && !referrer.includes(window.location.hostname);
+        let calculatedSource = 'direct';
+        let calculatedMedium = 'none';
+
+        if (utm_source) {
+          calculatedSource = utm_source;
+          calculatedMedium = utm_medium || 'none';
+        } else if (fbclid) {
+          calculatedSource = 'facebook';
+          calculatedMedium = 'cpc';
+        } else if (ttclid) {
+          calculatedSource = 'tiktok';
+          calculatedMedium = 'cpc';
+        } else if (isExternalReferrer) {
+          try {
+            calculatedSource = new URL(referrer).hostname;
+            calculatedMedium = 'referral';
+          } catch (e) {
+            calculatedSource = 'referrer';
+          }
+        }
+
+        const newSource = {
+          utm_source: calculatedSource,
+          utm_medium: calculatedMedium,
+          utm_campaign: utm_campaign || 'none',
+          referrer: referrer || 'none',
+          landingPage: window.location.href,
+          fbclid: fbclid || '',
+          ttclid: ttclid || '',
+          timestamp: Date.now()
+        };
+
+        sessionStorage.setItem('gz_traffic_source', JSON.stringify(newSource));
+      }
+    } catch (err) {
+      console.warn('Traffic tracking error:', err);
+    }
+  }, [location.pathname]);
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname) || location.pathname.startsWith('/admin');
 
   return (

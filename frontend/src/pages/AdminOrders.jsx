@@ -459,6 +459,50 @@ const AdminOrders = () => {
                 </Col>
               </Row>
 
+              {/* Marketing Attribution Source */}
+              {selectedOrder.trafficSource && (
+                <div className="p-3 bg-light border rounded-3 mb-4">
+                  <h6 className="fw-black text-uppercase mb-3" style={{ fontSize: '12px', letterSpacing: '0.5px' }}>
+                    Marketing & Attribution Source
+                  </h6>
+                  <Row className="g-3 small text-muted">
+                    <Col sm={4}>
+                      <span className="fw-bold text-dark d-block mb-1">Source / Medium:</span>
+                      <span className="badge bg-dark text-uppercase me-2" style={{ letterSpacing: '0.5px', padding: '4px 8px', fontSize: '9px' }}>
+                        {selectedOrder.trafficSource.utm_source || 'Direct'}
+                      </span>
+                      <span>({selectedOrder.trafficSource.utm_medium || 'none'})</span>
+                    </Col>
+                    <Col sm={4}>
+                      <span className="fw-bold text-dark d-block mb-1">Campaign Name:</span>
+                      <span>{selectedOrder.trafficSource.utm_campaign || 'none'}</span>
+                    </Col>
+                    <Col sm={4}>
+                      <span className="fw-bold text-dark d-block mb-1">Referrer Domain:</span>
+                      <span className="text-truncate d-inline-block" style={{ maxWidth: '100%', verticalAlign: 'bottom' }} title={selectedOrder.trafficSource.referrer}>
+                        {selectedOrder.trafficSource.referrer || 'None'}
+                      </span>
+                    </Col>
+                    {(selectedOrder.trafficSource.fbclid || selectedOrder.trafficSource.ttclid) && (
+                      <Col xs={12} className="pt-2 border-top">
+                        {selectedOrder.trafficSource.fbclid && (
+                          <div className="mb-1 text-truncate">
+                            <span className="fw-bold text-dark">Facebook Click ID (fbclid):</span>{' '}
+                            <code className="text-secondary small">{selectedOrder.trafficSource.fbclid}</code>
+                          </div>
+                        )}
+                        {selectedOrder.trafficSource.ttclid && (
+                          <div className="text-truncate">
+                            <span className="fw-bold text-dark">TikTok Click ID (ttclid):</span>{' '}
+                            <code className="text-secondary small">{selectedOrder.trafficSource.ttclid}</code>
+                          </div>
+                        )}
+                      </Col>
+                    )}
+                  </Row>
+                </div>
+              )}
+
               {/* Items */}
               <div className="mb-4">
                 <h6 className="fw-black text-uppercase mb-3">

@@ -52,6 +52,17 @@ const orderSchema = new mongoose.Schema({
   saveInfo: { type: Boolean, default: false },
   couponCode: { type: String, default: '' },
   discountAmount: { type: Number, default: 0 },
+  trafficSource: {
+    utm_source: { type: String, default: '' },
+    utm_medium: { type: String, default: '' },
+    utm_campaign: { type: String, default: '' },
+    referrer: { type: String, default: '' },
+    landingPage: { type: String, default: '' },
+    fbclid: { type: String, default: '' },
+    ttclid: { type: String, default: '' },
+    userAgent: { type: String, default: '' },
+    ipAddress: { type: String, default: '' },
+  },
   createdAt: { type: Date, default: Date.now },
 });
 

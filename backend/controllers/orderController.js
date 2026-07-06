@@ -93,6 +93,7 @@ export const createOrder = async (req, res) => {
       saveInfo,
       couponCode,
       discountAmount,
+      trafficSource,
     } = req.body;
 
     // Verify stock
@@ -120,6 +121,26 @@ export const createOrder = async (req, res) => {
 
     const userId = req.user?._id || null;
 
+    // Automatically resolve client IP and User Agent on the backend for analytics
+    const ipAddress = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.socket.remoteAddress || '';
+    const userAgent = req.headers['user-agent'] || '';
+
+    const finalTrafficSource = trafficSource ? {
+      ...trafficSource,
+      userAgent: trafficSource.userAgent || userAgent,
+      ipAddress: trafficSource.ipAddress || ipAddress,
+    } : {
+      utm_source: 'direct',
+      utm_medium: 'none',
+      utm_campaign: 'none',
+      referrer: 'none',
+      landingPage: '',
+      fbclid: '',
+      ttclid: '',
+      userAgent,
+      ipAddress,
+    };
+
     const order = await Order.create({
       user: userId,
       orderItems,
@@ -131,6 +152,7 @@ export const createOrder = async (req, res) => {
       saveInfo,
       couponCode: couponCode || '',
       discountAmount: discountAmount || 0,
+      trafficSource: finalTrafficSource,
     });
 
     // Send invoice email to the customer (awaited to guarantee delivery on serverless platforms like Vercel)
