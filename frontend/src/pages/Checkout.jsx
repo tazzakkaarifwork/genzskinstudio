@@ -302,6 +302,21 @@ const Checkout = () => {
         console.warn('TikTok pixel error:', pixelErr);
       }
 
+      // ✅ Frontend Meta (Facebook) Pixel — Backup only
+      // Server-side event (CAPI) bhi ja raha hai, Meta eventID se duplicates handle karta hai
+      try {
+        if (typeof window !== 'undefined' && window.fbq && data?._id) {
+          window.fbq('track', 'Purchase', {
+            content_type: 'product',
+            content_ids: orderItems.map(i => i.product),
+            currency: 'PKR',
+            value: finalTotal,
+          }, { eventID: data._id });
+        }
+      } catch (fbPixelErr) {
+        console.warn('Facebook pixel error:', fbPixelErr);
+      }
+
       clearCart();
       navigate('/order-success', { state: { order: data } });
     } catch (err) {

@@ -6,6 +6,7 @@ import RetentionSettings from '../models/RetentionSettings.js';
 import { sendOrderInvoiceEmail } from '../utils/invoiceEmail.js';
 import { sendStatusUpdateEmail } from '../utils/statusEmail.js';
 import { sendTikTokPurchaseEvent } from '../utils/tiktokEvents.js';
+import { sendFacebookPurchaseEvent } from '../utils/facebookEvents.js';
 
 // Predefined influencer coupons
 const INFLUENCER_COUPONS = {
@@ -143,6 +144,11 @@ export const createOrder = async (req, res) => {
     // Non-blocking: order response pe koi asar nahi
     sendTikTokPurchaseEvent(order).catch(err =>
       console.error('TikTok server event failed:', err.message)
+    );
+
+    // ✅ Facebook Conversions API (CAPI) Event
+    sendFacebookPurchaseEvent(order).catch(err =>
+      console.error('Facebook CAPI server event failed:', err.message)
     );
 
     res.status(201).json(order);
