@@ -73,9 +73,13 @@ const Products = () => {
           --rule: #e8e8e8;
           --surface: #f7f7f5;
           --white: #ffffff;
-          --pink-accent: #d4608a;
-          --pink-border: #f8d5e3;
-          --pink-soft: #fdf5f7;
+          --accent: #0f0f0f;
+          --accent-border: #e8e8e8;
+          --accent-soft: #f7f7f5;
+          /* kept for any leftover refs */
+          --pink-accent: #0f0f0f;
+          --pink-border: #e8e8e8;
+          --pink-soft: #f7f7f5;
         }
 
         .pp-page {
@@ -118,7 +122,7 @@ const Products = () => {
           font-size: 0.68rem;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--pink-accent);
+          color: var(--ink-soft);
           font-weight: 600;
           margin-bottom: 12px;
           animation: fadeUp 0.5s ease both;
@@ -149,7 +153,7 @@ const Products = () => {
           line-height: 1;
         }
         .pp-heading-block .stroke {
-          -webkit-text-stroke: 2px var(--pink-accent);
+          -webkit-text-stroke: 2px var(--ink);
           color: transparent;
         }
 
@@ -280,8 +284,8 @@ const Products = () => {
           transition: all 0.18s ease;
           letter-spacing: 0.03em;
         }
-        .pp-pill:hover { border-color: var(--pink-accent); color: var(--pink-accent); }
-        .pp-pill.active { background: var(--pink-accent); border-color: var(--pink-accent); color: #fff; }
+        .pp-pill:hover { border-color: var(--ink); color: var(--ink); }
+        .pp-pill.active { background: var(--ink); border-color: var(--ink); color: #fff; }
         .pp-filter-right {
           margin-left: auto;
           font-size: 0.76rem;
@@ -317,14 +321,16 @@ const Products = () => {
         .pp-feature:hover { background: var(--pink-soft); }
         .pp-feature-icon {
           width: 32px; height: 32px;
-          background: var(--pink-accent);
+          background: var(--ink);
           border-radius: 8px;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
           color: #fff;
+          transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
         }
+        .pp-feature:hover .pp-feature-icon { transform: scale(1.12) rotate(-4deg); }
         .pp-feature-title { font-size: 0.75rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
         .pp-feature-desc { font-size: 0.68rem; color: var(--ink-faint); line-height: 1.4; font-weight: 300; }
 
@@ -378,14 +384,14 @@ const Products = () => {
 
         /* ── NEWSLETTER ── */
         .pp-newsletter {
-          background: linear-gradient(135deg, #ffffff 0%, var(--pink-soft) 100%);
+          background: #f7f7f5;
           border-radius: 20px;
           padding: 52px 36px;
           text-align: center;
           position: relative;
           overflow: hidden;
           margin-bottom: 50px;
-          border: 1px solid var(--pink-border);
+          border: 1px solid #e8e8e8;
         }
         .pp-newsletter::before {
           content: 'GENZ';
@@ -394,7 +400,7 @@ const Products = () => {
           transform: translate(-50%,-50%);
           font-family: 'Bebas Neue', sans-serif;
           font-size: 14rem;
-          color: rgba(212, 96, 138, 0.03);
+          color: rgba(0,0,0,0.03);
           pointer-events: none;
           white-space: nowrap;
         }
@@ -402,7 +408,7 @@ const Products = () => {
           font-size: 0.66rem;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--pink-accent);
+          color: var(--ink-soft);
           margin-bottom: 12px;
           font-weight: 600;
         }
@@ -445,22 +451,8 @@ const Products = () => {
         }
         .pp-newsletter-input::placeholder { color: rgba(0,0,0,0.3); }
         .pp-newsletter-input:focus { border-color: var(--pink-accent); }
-        .pp-newsletter-btn {
-          background: var(--pink-accent);
-          color: #ffffff;
-          border: none;
-          border-radius: 40px;
-          padding: 0 26px;
-          height: 46px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.76rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          cursor: pointer;
-          transition: background 0.2s;
-        }
-        .pp-newsletter-btn:hover { background: #c34f77; }
+        .pp-newsletter-btn { background: var(--ink); color: #ffffff; border: none; border-radius: 40px; padding: 0 26px; height: 46px; font-family: 'DM Sans', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.28s cubic-bezier(0.16,1,0.3,1); }
+        .pp-newsletter-btn:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp {
@@ -479,7 +471,7 @@ const Products = () => {
         .genz-loader { display: flex; gap: 6px; }
         .genz-loader span {
           width: 8px; height: 8px;
-          background: var(--pink-accent);
+          background: var(--ink);
           border-radius: 50%;
           animation: ldot 0.8s infinite ease-in-out;
         }
@@ -528,22 +520,8 @@ const Products = () => {
           cursor: pointer;
           padding: 0 6px;
         }
-        .gz-page-search-btn {
-          border: none;
-          background: var(--pink-accent);
-          color: #fff;
-          border-radius: 100px;
-          padding: 8px 18px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          cursor: pointer;
-          flex-shrink: 0;
-          transition: background 0.2s;
-        }
-        .gz-page-search-btn:hover { background: #c34f77; }
+        .gz-page-search-btn { border: none; background: var(--ink); color: #fff; border-radius: 100px; padding: 8px 18px; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; flex-shrink: 0; transition: all 0.28s cubic-bezier(0.16,1,0.3,1); }
+        .gz-page-search-btn:hover { background: #333; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(0,0,0,0.15); }
         .pp-search-row {
           display: flex;
           align-items: center;

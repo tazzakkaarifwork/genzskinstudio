@@ -447,11 +447,37 @@ const Home = () => {
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes scaleIn {
-          from { opacity: 0; transform: scale(0.92); }
-          to   { opacity: 1; transform: scale(1); }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
         }
-        .anim-scale-in { animation: scaleIn 0.6s cubic-bezier(0.16,1,0.3,1) both; }
+        @keyframes scaleIn {
+          from { opacity: 0; transform: scale(0.94) translateY(14px); }
+          to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-18px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes shimmer {
+          0%   { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        .anim-scale-in { animation: scaleIn 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+        .anim-fade-up  { animation: fadeUp 0.55s cubic-bezier(0.16,1,0.3,1) both; }
+
+        /* ── CARD ENTRANCE STAGGER ── */
+        .ref-card-wrap { animation: scaleIn 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+        .ref-card-wrap:nth-child(1)  { animation-delay: 0.04s; }
+        .ref-card-wrap:nth-child(2)  { animation-delay: 0.10s; }
+        .ref-card-wrap:nth-child(3)  { animation-delay: 0.16s; }
+        .ref-card-wrap:nth-child(4)  { animation-delay: 0.22s; }
+        .ref-card-wrap:nth-child(5)  { animation-delay: 0.28s; }
+        .ref-card-wrap:nth-child(6)  { animation-delay: 0.34s; }
+        .ref-card-wrap:nth-child(7)  { animation-delay: 0.40s; }
+        .ref-card-wrap:nth-child(8)  { animation-delay: 0.46s; }
+        .ref-card-wrap:nth-child(9)  { animation-delay: 0.52s; }
+        .ref-card-wrap:nth-child(n+10){ animation-delay: 0.56s; }
 
         /* ── SIDEBAR ── */
         .ref-sidebar { background: #fff; padding: 0; }
@@ -463,7 +489,7 @@ const Home = () => {
         .ref-cat-item.active { background: #f5f5f5; color: #111; font-weight: 600; }
         .ref-cat-item .cat-icon { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; color: #888; }
         .ref-cat-item.active .cat-icon { color: #111; }
-        .ref-cat-item .cat-badge { margin-left: auto; background: #ff4444; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; min-width: 24px; text-align: center; }
+        .ref-cat-item .cat-badge { margin-left: auto; background: #0f0f0f; color: #fff; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; min-width: 24px; text-align: center; }
         .ref-cat-item .cat-arrow { margin-left: auto; color: #aaa; font-size: 0.7rem; transition: transform 0.2s ease; }
         .ref-cat-item:hover .cat-arrow { color: #666; }
         .ref-filter-list { list-style: none; padding: 0; margin: 0; }
@@ -480,14 +506,14 @@ const Home = () => {
         @media (max-width:768px)  { .ref-card-grid { grid-template-columns: repeat(2,1fr); gap: 12px; } }
         @media (max-width:480px)  { .ref-card-grid { grid-template-columns: 1fr; } }
 
-        .ref-card { background:#fff; border-radius:12px; border:1px solid #e8e8e8; overflow:hidden; transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position:relative; height:100%; display:flex; flex-direction:column; box-shadow: 0 2px 8px rgba(0,0,0,0.02); max-width: 270px; width: 100%; margin: 0 auto; }
-        .ref-card:hover { border-color:#0f0f0f; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform:translateY(-4px); }
-        .ref-card-tag { position:absolute; top:10px; right:10px; background:#ff3f6c; color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; z-index:3; pointer-events:none; }
+        .ref-card { background:#fff; border-radius:14px; border:1px solid #e8e8e8; overflow:hidden; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.25s ease; position:relative; height:100%; display:flex; flex-direction:column; box-shadow: 0 2px 10px rgba(0,0,0,0.03); max-width: 270px; width: 100%; margin: 0 auto; }
+        .ref-card:hover { border-color:#0f0f0f; box-shadow: 0 16px 36px rgba(0,0,0,0.10); transform:translateY(-6px); }
+        .ref-card-tag { position:absolute; top:10px; right:10px; background:#0f0f0f; color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.06em; text-transform:uppercase; z-index:3; pointer-events:none; animation: fadeIn 0.4s ease both; }
         
         .ref-card-img-wrap { width:100% !important; height:220px; background:#ffffff; position:relative; display:block; overflow:hidden; }
-        .ref-card-img-wrap img { width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease; }
-        .ref-card-img-hover { position:absolute; top:0; left:0; width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; opacity:0; transition:opacity 0.25s ease; }
-        .ref-card:hover .ref-card-img-wrap img { transform:scale(1.06); }
+        .ref-card-img-wrap img { width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; transition:transform 0.65s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease; }
+        .ref-card-img-hover { position:absolute; top:0; left:0; width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; opacity:0; transition:opacity 0.3s ease; }
+        .ref-card:hover .ref-card-img-wrap img { transform:scale(1.08); }
         .ref-card:hover .has-hover-image .ref-card-img-primary { opacity:0; }
         .ref-card:hover .ref-card-img-hover { opacity:1; }
         
@@ -498,23 +524,36 @@ const Home = () => {
         .ref-card-details-right { display:flex; flex-direction:column; align-items:flex-end; text-align:right; flex-shrink:0; }
         
         .ref-card-name { font-size:0.85rem; font-weight:700; color:#0f0f0f; margin:0 0 4px 0; line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; height:2.6em; transition:color 0.2s ease; }
-        .ref-card-name:hover { color:#555; }
+        .ref-card-name:hover { color:#444; }
         
-        .ref-timer-badge { background:#000000; border-radius:4px; padding:2px 6px; font-size:0.62rem; font-weight:700; color:#ffffff; font-family:monospace; margin-bottom:4px; display:inline-block; white-space:nowrap; letter-spacing:0.02em; }
+        .ref-timer-badge { background:#0f0f0f; border-radius:4px; padding:2px 6px; font-size:0.62rem; font-weight:700; color:#ffffff; font-family:monospace; margin-bottom:4px; display:inline-block; white-space:nowrap; letter-spacing:0.02em; }
         
         .ref-card-meta { display:flex; align-items:center; gap:4px; margin-bottom:0; }
         .ref-card-price { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
         .ref-card-price-original { font-size:0.72rem; text-decoration:line-through; color:#999; font-weight:400; }
-        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#ff3f6c; margin:0; }
+        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#0f0f0f; margin:0; }
         .ref-card-price-regular { font-size:0.95rem; font-weight:800; color:#0f0f0f; margin:0; }
         
         .ref-card-actions { margin-top:auto; display:flex; gap:6px; align-items:center; width:100%; }
         
-        .ref-btn-cart { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid var(--pink-accent, #d4608a); background: var(--pink-accent, #d4608a); color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-align:center; box-shadow: 0 4px 10px rgba(212,96,138,0.15); }
-        .ref-btn-cart:hover { background: #c34f77; border-color: #c34f77; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(212,96,138,0.25); }
-        .ref-btn-cart:disabled { border-color:#ccc; color:#ccc; background:#fff; cursor:not-allowed; box-shadow: none; }
-        .ref-btn-buy  { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid #0f0f0f; background:#0f0f0f; color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.2s ease; text-align:center; text-decoration:none; }
-        .ref-btn-buy:hover { background:#333333; color:#fff; }
+        .ref-btn-cart {
+          flex:1; padding:7px 12px; border-radius:20px;
+          border:1.5px solid #0f0f0f; background:#fff; color:#0f0f0f;
+          font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+          cursor:pointer; text-align:center; position: relative; overflow: hidden;
+          transition: all 0.28s cubic-bezier(0.16,1,0.3,1);
+        }
+        .ref-btn-cart::after {
+          content: ''; position:absolute; inset:0;
+          background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
+          background-size: 200% 100%; background-position: -200% center;
+          transition: background-position 0.5s ease;
+        }
+        .ref-btn-cart:hover { background:#0f0f0f; color:#fff; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .ref-btn-cart:hover::after { background-position: 200% center; }
+        .ref-btn-cart:disabled { border-color:#ccc; color:#ccc; background:#fff; cursor:not-allowed; box-shadow:none; }
+        .ref-btn-buy  { flex:1; padding:7px 12px; border-radius:20px; border:1.5px solid #0f0f0f; background:#0f0f0f; color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; transition:all 0.28s ease; text-align:center; text-decoration:none; }
+        .ref-btn-buy:hover { background:#333; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); color:#fff; }
  
         .stock-badge {
           position: absolute;
@@ -532,8 +571,8 @@ const Home = () => {
         }
  
         .ref-wishlist-btn { position:absolute; top:10px; left:10px; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.9); border:1px solid #e0e0e0; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:4; font-size:1rem; transition:all 0.2s ease; color:#888; padding:0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .ref-wishlist-btn:hover { transform:scale(1.1); background:#fff; color:#ff3f6c; border-color:#ff3f6c; }
-        .ref-wishlist-btn.active { color:#ff3f6c; background:#fff; border-color:#ff3f6c; }
+        .ref-wishlist-btn:hover { transform:scale(1.12); background:#0f0f0f; color:#fff; border-color:#0f0f0f; }
+        .ref-wishlist-btn.active { color:#fff; background:#0f0f0f; border-color:#0f0f0f; }
         .ref-section-header {
           display: flex;
           align-items: center;
@@ -554,8 +593,8 @@ const Home = () => {
           align-items: center;
           gap: 8px;
           flex-shrink: 0;
-          background: #faf8f4;
-          border: 1px solid #e0d9cc;
+          background: #f5f5f5;
+          border: 1px solid #e0e0e0;
           border-radius: 100px;
           padding: 5px 5px 5px 14px;
         }
@@ -595,7 +634,7 @@ const Home = () => {
           left: 50%;
           transform: translate(-50%, 10px);
           background: rgba(255,255,255,0.95);
-          border: 1px solid var(--pink-border);
+          border: 1px solid #e8e8e8;
           color: var(--ink);
           font-size: 0.72rem;
           font-weight: 600;

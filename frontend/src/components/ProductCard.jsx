@@ -73,19 +73,19 @@ const ProductCard = ({ product }) => {
     <>
       <style>{`
          .gz-card {background:#fff;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);height:100%;display:flex;flex-direction:column;position:relative;box-shadow: 0 4px 12px rgba(0,0,0,0.02);max-width: 270px;width: 100%;margin: 0 auto;}
-         .gz-card:hover{border-color:#0f0f0f;transform:translateY(-4px);box-shadow: 0 8px 24px rgba(0,0,0,0.08);}
+         .gz-card:hover{border-color:#0f0f0f; transform:translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.10);}
          
-         .gz-wishlist-btn{position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.9);border:1px solid #e0e0e0;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;box-shadow:0 2px 6px rgba(0,0,0,0.05);transition:all 0.2s ease;color:#888;padding:0;}
-         .gz-wishlist-btn:hover{transform:scale(1.1);background:#fff;color:#ff3f6c;border-color:#ff3f6c;}
-         .gz-wishlist-btn.active{color:#ff3f6c;background:#fff;border-color:#ff3f6c;}
+         .gz-wishlist-btn{position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.9);border:1px solid #e0e0e0;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;box-shadow:0 2px 6px rgba(0,0,0,0.05);transition:all 0.25s cubic-bezier(0.16,1,0.3,1);color:#888;padding:0;}
+         .gz-wishlist-btn:hover{transform:scale(1.12);background:#0f0f0f;color:#fff;border-color:#0f0f0f;}
+         .gz-wishlist-btn.active{color:#fff;background:#0f0f0f;border-color:#0f0f0f;}
         
-         .offer-badge{position:absolute;top:10px;right:10px;background:#ff3f6c;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase;z-index:3;pointer-events:none;}
-         .out-of-stock-badge{position:absolute;top:10px;right:10px;background:#dc3545;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase;z-index:3;pointer-events:none;}
+         .offer-badge{position:absolute;top:10px;right:10px;background:#0f0f0f;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase;z-index:3;pointer-events:none;animation:fadeIn 0.4s ease both;}
+         .out-of-stock-badge{position:absolute;top:10px;right:10px;background:#555;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase;z-index:3;pointer-events:none;}
         
         .gz-card-img-wrap{width:100% !important;height:220px;overflow:hidden;background:#ffffff;position:relative;display:block;}
-        .gz-card-img{width:100% !important;height:100% !important;object-fit:contain !important;padding: 4px;display:block;transition:transform 0.6s cubic-bezier(0.16,1,0.3,1),opacity 0.25s ease;}
-        .gz-card-img-hover{position:absolute;top:0;left:0;width:100% !important;height:100% !important;object-fit:contain !important;padding: 4px;opacity:0;transition:opacity 0.25s ease;}
-        .gz-card:hover .gz-card-img{transform:scale(1.06);}
+         .gz-card-img{width:100% !important;height:100% !important;object-fit:contain !important;padding: 4px;display:block;transition:transform 0.65s cubic-bezier(0.16,1,0.3,1),opacity 0.3s ease;}
+         .gz-card-img-hover{position:absolute;top:0;left:0;width:100% !important;height:100% !important;object-fit:contain !important;padding: 4px;opacity:0;transition:opacity 0.3s ease;}
+         .gz-card:hover .gz-card-img{transform:scale(1.08);}
         .gz-card:hover .has-hover-image .gz-card-img{opacity:0;}
         .gz-card:hover .gz-card-img-hover{opacity:1;}
         
@@ -109,7 +109,7 @@ const ProductCard = ({ product }) => {
         
         .gz-card-price-container{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
         .gz-card-price-original{font-size:0.72rem;text-decoration:line-through;color:#999;font-weight:400;}
-         .gz-card-price-sale{font-size:0.95rem;font-weight:800;color:#ff3f6c;margin:0;}
+         .gz-card-price-sale{font-size:0.95rem;font-weight:800;color:#0f0f0f;margin:0;}
          .gz-card-price-regular{font-size:0.95rem;font-weight:800;color:#0f0f0f;margin:0;}
         
         .gz-card-actions{display:flex;gap:6px;align-items:center;margin-top:auto;width:100%;}
@@ -117,24 +117,31 @@ const ProductCard = ({ product }) => {
            flex:1;
            padding:7px 12px;
            border-radius:20px;
-           border:1.5px solid var(--pink-accent, #d4608a);
-           background: var(--pink-accent, #d4608a);
-           color: #fff;
+           border:1.5px solid #0f0f0f;
+           background: #fff;
+           color: #0f0f0f;
            font-size:0.72rem;
            font-weight:700;
-           letter-spacing:0.02em;
+           letter-spacing:0.04em;
            text-transform:uppercase;
            cursor:pointer;
-           transition:all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+           position: relative; overflow: hidden;
+           transition:all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
            text-align:center;
-           box-shadow: 0 4px 10px rgba(212, 96, 138, 0.15);
+         }
+         .gz-btn-add-new::after {
+           content:''; position:absolute; inset:0;
+           background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+           background-size:200% 100%; background-position:-200% center;
+           transition: background-position 0.5s ease;
          }
          .gz-btn-add-new:hover {
-           background: #c34f77;
-           border-color: #c34f77;
+           background: #0f0f0f;
+           color: #fff;
            transform: translateY(-1px);
-           box-shadow: 0 6px 14px rgba(212, 96, 138, 0.25);
+           box-shadow: 0 6px 16px rgba(0,0,0,0.15);
          }
+         .gz-btn-add-new:hover::after { background-position: 200% center; }
          .gz-btn-add-new:disabled {
            border-color:#ccc;
            color:#ccc;
