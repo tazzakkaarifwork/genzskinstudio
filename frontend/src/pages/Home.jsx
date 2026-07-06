@@ -1333,6 +1333,17 @@ const Home = () => {
                     <span className="filter-arrow">›</span>
                   </li>
                 </ul>
+              </div>
+            </Col>
+
+            <Col lg={9} md={8}>
+              <div className="ref-section-header">
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                  <h5 className="ref-section-title" style={{ margin: 0 }}>
+                    {viewMode === 'newArrivals' ? 'New Arrivals' : (viewMode === 'bestSellers' ? 'Best Sellers' : (viewMode === 'onDiscount' ? 'On Discount' : (activeCategory === 'all' ? 'All Products' : categories.find(c => c._id === activeCategory)?.name || 'Products')))}
+                  </h5>
+                  <span className="ref-section-count" style={{ fontSize: '0.8rem', color: '#888', fontWeight: 500 }}>({sortedProducts.length} items)</span>
+                </div>
                 <div className="ref-sort-wrap">
                   <span className="ref-sort-label">Sort by Price</span>
                   <select className="ref-sort-select" value={priceSort} onChange={(e) => setPriceSort(e.target.value)}>
@@ -1341,15 +1352,6 @@ const Home = () => {
                     <option value="high-low">High to Low</option>
                   </select>
                 </div>
-              </div>
-            </Col>
-
-            <Col lg={9} md={8}>
-              <div className="ref-section-header">
-                <h5 className="ref-section-title">
-                  {viewMode === 'newArrivals' ? 'New Arrivals' : (viewMode === 'bestSellers' ? 'Best Sellers' : (viewMode === 'onDiscount' ? 'On Discount' : (activeCategory === 'all' ? 'All Products' : categories.find(c => c._id === activeCategory)?.name || 'Products')))}
-                </h5>
-                <span className="ref-section-count">{sortedProducts.length} items</span>
               </div>
               {loading ? (
                 <div className="text-center py-5 w-100">

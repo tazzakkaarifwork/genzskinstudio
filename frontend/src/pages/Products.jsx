@@ -73,6 +73,9 @@ const Products = () => {
           --rule: #e8e8e8;
           --surface: #f7f7f5;
           --white: #ffffff;
+          --pink-accent: #d4608a;
+          --pink-border: #f8d5e3;
+          --pink-soft: #fdf5f7;
         }
 
         .pp-page {
@@ -86,7 +89,7 @@ const Products = () => {
         /* ── HERO ── */
         .pp-hero {
           position: relative;
-          padding: 72px 0 56px;
+          padding: 32px 0 24px;
           text-align: center;
           border-bottom: 1px solid var(--rule);
           overflow: hidden;
@@ -115,9 +118,9 @@ const Products = () => {
           font-size: 0.68rem;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--ink-faint);
+          color: var(--pink-accent);
           font-weight: 600;
-          margin-bottom: 22px;
+          margin-bottom: 12px;
           animation: fadeUp 0.5s ease both;
         }
         .pp-eyebrow::before, .pp-eyebrow::after {
@@ -127,7 +130,7 @@ const Products = () => {
           background: var(--rule);
         }
 
-        .pp-heading { margin: 0 0 20px; line-height: 0.95; animation: fadeUp 0.5s 0.07s ease both; }
+        .pp-heading { margin: 0 0 12px; line-height: 0.95; animation: fadeUp 0.5s 0.07s ease both; }
         .pp-heading-serif {
           display: block;
           font-family: 'Playfair Display', Georgia, serif;
@@ -146,7 +149,7 @@ const Products = () => {
           line-height: 1;
         }
         .pp-heading-block .stroke {
-          -webkit-text-stroke: 2px var(--ink);
+          -webkit-text-stroke: 2px var(--pink-accent);
           color: transparent;
         }
 
@@ -155,7 +158,7 @@ const Products = () => {
           align-items: center;
           justify-content: center;
           gap: 14px;
-          margin-bottom: 18px;
+          margin-bottom: 12px;
           animation: fadeUp 0.5s 0.12s ease both;
         }
         .pp-rule-group span { width: 40px; height: 1px; background: var(--ink); display: block; }
@@ -233,7 +236,7 @@ const Products = () => {
 
         /* ── FILTER ── */
         .pp-filter-section {
-          padding: 32px 0 28px;
+          padding: 16px 0 12px;
           border-bottom: 1px solid var(--rule);
           animation: fadeUp 0.5s 0.27s ease both;
         }
@@ -277,8 +280,8 @@ const Products = () => {
           transition: all 0.18s ease;
           letter-spacing: 0.03em;
         }
-        .pp-pill:hover { border-color: var(--ink); color: var(--ink); }
-        .pp-pill.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+        .pp-pill:hover { border-color: var(--pink-accent); color: var(--pink-accent); }
+        .pp-pill.active { background: var(--pink-accent); border-color: var(--pink-accent); color: #fff; }
         .pp-filter-right {
           margin-left: auto;
           font-size: 0.76rem;
@@ -289,7 +292,7 @@ const Products = () => {
         .pp-filter-right strong { color: var(--ink); font-weight: 600; }
 
         /* ── GRID SECTION ── */
-        .pp-grid-section { padding: 44px 0 72px; }
+        .pp-grid-section { padding: 16px 0 48px; }
 
         .pp-feature-strip {
           display: grid;
@@ -299,7 +302,8 @@ const Products = () => {
           border: 1px solid var(--rule);
           border-radius: 16px;
           overflow: hidden;
-          margin-bottom: 40px;
+          margin-top: 40px;
+          margin-bottom: 24px;
         }
         @media (max-width: 768px) { .pp-feature-strip { grid-template-columns: repeat(2, 1fr); } }
         .pp-feature {
@@ -310,10 +314,10 @@ const Products = () => {
           gap: 12px;
           transition: background 0.2s;
         }
-        .pp-feature:hover { background: var(--surface); }
+        .pp-feature:hover { background: var(--pink-soft); }
         .pp-feature-icon {
           width: 32px; height: 32px;
-          background: var(--ink);
+          background: var(--pink-accent);
           border-radius: 8px;
           display: flex;
           align-items: center;
@@ -374,14 +378,14 @@ const Products = () => {
 
         /* ── NEWSLETTER ── */
         .pp-newsletter {
-          background: #ffffff;
+          background: linear-gradient(135deg, #ffffff 0%, var(--pink-soft) 100%);
           border-radius: 20px;
           padding: 52px 36px;
           text-align: center;
           position: relative;
           overflow: hidden;
           margin-bottom: 50px;
-          border: 1px solid var(--rule);
+          border: 1px solid var(--pink-border);
         }
         .pp-newsletter::before {
           content: 'GENZ';
@@ -390,7 +394,7 @@ const Products = () => {
           transform: translate(-50%,-50%);
           font-family: 'Bebas Neue', sans-serif;
           font-size: 14rem;
-          color: rgba(0,0,0,0.02);
+          color: rgba(212, 96, 138, 0.03);
           pointer-events: none;
           white-space: nowrap;
         }
@@ -398,8 +402,9 @@ const Products = () => {
           font-size: 0.66rem;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--ink-faint);
+          color: var(--pink-accent);
           margin-bottom: 12px;
+          font-weight: 600;
         }
         .pp-newsletter-heading {
           font-family: 'Bebas Neue', sans-serif;
@@ -439,9 +444,9 @@ const Products = () => {
           transition: border-color 0.2s;
         }
         .pp-newsletter-input::placeholder { color: rgba(0,0,0,0.3); }
-        .pp-newsletter-input:focus { border-color: var(--ink); }
+        .pp-newsletter-input:focus { border-color: var(--pink-accent); }
         .pp-newsletter-btn {
-          background: var(--ink);
+          background: var(--pink-accent);
           color: #ffffff;
           border: none;
           border-radius: 40px;
@@ -455,7 +460,7 @@ const Products = () => {
           cursor: pointer;
           transition: background 0.2s;
         }
-        .pp-newsletter-btn:hover { background: #333333; }
+        .pp-newsletter-btn:hover { background: #c34f77; }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp {
@@ -474,7 +479,7 @@ const Products = () => {
         .genz-loader { display: flex; gap: 6px; }
         .genz-loader span {
           width: 8px; height: 8px;
-          background: #0f0f0f;
+          background: var(--pink-accent);
           border-radius: 50%;
           animation: ldot 0.8s infinite ease-in-out;
         }
@@ -497,7 +502,7 @@ const Products = () => {
           min-width: 200px;
           max-width: 420px;
         }
-        .gz-page-search:focus-within { border-color: var(--ink); }
+        .gz-page-search:focus-within { border-color: var(--pink-accent); }
         .gz-page-search-icon {
           display: flex;
           color: var(--ink-faint);
@@ -525,7 +530,7 @@ const Products = () => {
         }
         .gz-page-search-btn {
           border: none;
-          background: var(--ink);
+          background: var(--pink-accent);
           color: #fff;
           border-radius: 100px;
           padding: 8px 18px;
@@ -538,14 +543,14 @@ const Products = () => {
           flex-shrink: 0;
           transition: background 0.2s;
         }
-        .gz-page-search-btn:hover { background: #333; }
+        .gz-page-search-btn:hover { background: #c34f77; }
         .pp-search-row {
           display: flex;
           align-items: center;
           gap: 16px;
           flex-wrap: wrap;
-          margin-bottom: 20px;
-          padding-bottom: 20px;
+          margin-bottom: 12px;
+          padding-bottom: 12px;
           border-bottom: 1px solid var(--rule);
         }
         .pp-search-label {
@@ -611,24 +616,6 @@ const Products = () => {
 
           <div className="pp-grid-section">
 
-            {/* PRODUCT GRID - right after search */}
-            <div className="pp-feature-strip">
-              {[
-                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: 'Clean Formula', desc: 'Free from parabens & sulfates' },
-                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>, title: 'Derm Tested', desc: 'Safe for all skin types' },
-                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, title: 'Fast Delivery', desc: 'Nationwide in 2–4 days' },
-                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, title: 'Made in Pakistan', desc: 'Locally sourced & crafted' },
-              ].map((f, i) => (
-                <div className="pp-feature" key={i}>
-                  <div className="pp-feature-icon">{f.icon}</div>
-                  <div>
-                    <div className="pp-feature-title">{f.title}</div>
-                    <div className="pp-feature-desc">{f.desc}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             {/* GRID LABEL */}
             <div className="pp-grid-label">
               <span className="pp-grid-label-text">
@@ -669,6 +656,24 @@ const Products = () => {
                   </div>
                 ))
               )}
+            </div>
+
+            {/* FEATURES STRIP - Moved below products grid */}
+            <div className="pp-feature-strip">
+              {[
+                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: 'Clean Formula', desc: 'Free from parabens & sulfates' },
+                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>, title: 'Derm Tested', desc: 'Safe for all skin types' },
+                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, title: 'Fast Delivery', desc: 'Nationwide in 2–4 days' },
+                { icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>, title: 'Made in Pakistan', desc: 'Locally sourced & crafted' },
+              ].map((f, i) => (
+                <div className="pp-feature" key={i}>
+                  <div className="pp-feature-icon">{f.icon}</div>
+                  <div>
+                    <div className="pp-feature-title">{f.title}</div>
+                    <div className="pp-feature-desc">{f.desc}</div>
+                  </div>
+                </div>
+              ))}
             </div>
 
           </div>
