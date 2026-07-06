@@ -51,56 +51,7 @@ const Checkout = () => {
     fetchShipping();
   }, []);
 
-  // Track checkout initiation on mount
-  useEffect(() => {
-    trackSession({
-      checkoutStarted: true,
-      checkoutStep: 'contact',
-      cartItems: cartItems.map(item => ({
-        product: item.product._id,
-        name: item.product.name,
-        price: getProductPrice(item.product),
-        quantity: item.quantity,
-        image: item.product.image || item.product.images?.[0] || '',
-      })),
-      cartTotal: finalTotal,
-    });
-  }, []);
 
-  // Debounced checkout field tracking to monitor progression
-  useEffect(() => {
-    if (cartItems.length === 0) return;
-
-    let step = 'contact';
-    if (formData.firstName || formData.lastName || formData.address || formData.city || formData.phone) {
-      step = 'shipping';
-    }
-    if (differentBilling && (formData.billingFirstName || formData.billingAddress)) {
-      step = 'billing';
-    }
-
-    const timer = setTimeout(() => {
-      trackSession({
-        checkoutStarted: true,
-        checkoutStep: step,
-        checkoutEmail: formData.email,
-        checkoutPhone: formData.phone,
-        checkoutName: `${formData.firstName} ${formData.lastName}`.trim(),
-        checkoutCity: formData.city,
-        checkoutAddress: `${formData.address} ${formData.apartment}`.trim(),
-        cartItems: cartItems.map(item => ({
-          product: item.product._id,
-          name: item.product.name,
-          price: getProductPrice(item.product),
-          quantity: item.quantity,
-          image: item.product.image || item.product.images?.[0] || '',
-        })),
-        cartTotal: finalTotal,
-      });
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, [formData, cartItems]);
 
 
   const handleApplyCoupon = async (e) => {
@@ -182,6 +133,57 @@ const Checkout = () => {
   };
   const shippingCost = getShippingCost(formData.city);
   const finalTotal = (subtotal - discountAmount) + shippingCost;
+
+  // Track checkout initiation on mount
+  useEffect(() => {
+    trackSession({
+      checkoutStarted: true,
+      checkoutStep: 'contact',
+      cartItems: cartItems.map(item => ({
+        product: item.product._id,
+        name: item.product.name,
+        price: getProductPrice(item.product),
+        quantity: item.quantity,
+        image: item.product.image || item.product.images?.[0] || '',
+      })),
+      cartTotal: finalTotal,
+    });
+  }, []);
+
+  // Debounced checkout field tracking to monitor progression
+  useEffect(() => {
+    if (cartItems.length === 0) return;
+
+    let step = 'contact';
+    if (formData.firstName || formData.lastName || formData.address || formData.city || formData.phone) {
+      step = 'shipping';
+    }
+    if (differentBilling && (formData.billingFirstName || formData.billingAddress)) {
+      step = 'billing';
+    }
+
+    const timer = setTimeout(() => {
+      trackSession({
+        checkoutStarted: true,
+        checkoutStep: step,
+        checkoutEmail: formData.email,
+        checkoutPhone: formData.phone,
+        checkoutName: `${formData.firstName} ${formData.lastName}`.trim(),
+        checkoutCity: formData.city,
+        checkoutAddress: `${formData.address} ${formData.apartment}`.trim(),
+        cartItems: cartItems.map(item => ({
+          product: item.product._id,
+          name: item.product.name,
+          price: getProductPrice(item.product),
+          quantity: item.quantity,
+          image: item.product.image || item.product.images?.[0] || '',
+        })),
+        cartTotal: finalTotal,
+      });
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [formData, cartItems]);
 
   if (cartItems.length === 0) {
     return (
