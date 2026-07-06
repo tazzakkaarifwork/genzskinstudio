@@ -70,12 +70,12 @@ const Products = () => {
           --ink: #0f0f0f;
           --ink-soft: #555;
           --ink-faint: #aaa;
-          --rule: #e0d9cc;
-          --surface: #faf8f4;
+          --rule: #e8e8e8;
+          --surface: #f7f7f5;
           --white: #ffffff;
-          --pink-accent: #b8860b;
-          --pink-border: #e8d5a3;
-          --pink-soft: #fdf8ee;
+          --pink-accent: #d4608a;
+          --pink-border: #f8d5e3;
+          --pink-soft: #fdf5f7;
         }
 
         .pp-page {
@@ -315,7 +315,6 @@ const Products = () => {
           transition: background 0.2s;
         }
         .pp-feature:hover { background: var(--pink-soft); }
-        .pp-feature-icon { background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%) !important; }
         .pp-feature-icon {
           width: 32px; height: 32px;
           background: var(--pink-accent);
@@ -379,7 +378,7 @@ const Products = () => {
 
         /* ── NEWSLETTER ── */
         .pp-newsletter {
-          background: linear-gradient(135deg, #fdf8ee 0%, #fff9f0 60%, #fdf8ee 100%);
+          background: linear-gradient(135deg, #ffffff 0%, var(--pink-soft) 100%);
           border-radius: 20px;
           padding: 52px 36px;
           text-align: center;
@@ -395,7 +394,7 @@ const Products = () => {
           transform: translate(-50%,-50%);
           font-family: 'Bebas Neue', sans-serif;
           font-size: 14rem;
-          color: rgba(184, 134, 11, 0.04);
+          color: rgba(212, 96, 138, 0.03);
           pointer-events: none;
           white-space: nowrap;
         }
@@ -461,7 +460,7 @@ const Products = () => {
           cursor: pointer;
           transition: background 0.2s;
         }
-        .pp-newsletter-btn:hover { background: #9a7009; }
+        .pp-newsletter-btn:hover { background: #c34f77; }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp {
@@ -544,7 +543,7 @@ const Products = () => {
           flex-shrink: 0;
           transition: background 0.2s;
         }
-        .gz-page-search-btn:hover { background: #9a7009; }
+        .gz-page-search-btn:hover { background: #c34f77; }
         .pp-search-row {
           display: flex;
           align-items: center;

@@ -73,13 +73,13 @@ const ProductCard = ({ product }) => {
     <>
       <style>{`
          .gz-card {background:#fff;border:1px solid #e8e8e8;border-radius:12px;overflow:hidden;transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1);height:100%;display:flex;flex-direction:column;position:relative;box-shadow: 0 4px 12px rgba(0,0,0,0.02);max-width: 270px;width: 100%;margin: 0 auto;}
-         .gz-card:hover{border-color: #b8860b; transform:translateY(-5px);box-shadow: 0 12px 30px rgba(184, 134, 11, 0.12);}
+         .gz-card:hover{border-color:#0f0f0f;transform:translateY(-4px);box-shadow: 0 8px 24px rgba(0,0,0,0.08);}
          
          .gz-wishlist-btn{position:absolute;top:10px;left:10px;background:rgba(255,255,255,0.9);border:1px solid #e0e0e0;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:4;box-shadow:0 2px 6px rgba(0,0,0,0.05);transition:all 0.2s ease;color:#888;padding:0;}
-         .gz-wishlist-btn:hover{transform:scale(1.1);background:#fffbf0;color:#b8860b;border-color:#b8860b;}
-         .gz-wishlist-btn.active{color:#b8860b;background:#fffbf0;border-color:#b8860b;}
+         .gz-wishlist-btn:hover{transform:scale(1.1);background:#fff;color:#ff3f6c;border-color:#ff3f6c;}
+         .gz-wishlist-btn.active{color:#ff3f6c;background:#fff;border-color:#ff3f6c;}
         
-         .offer-badge{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#b8860b 0%,#c9a84c 100%);color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase;z-index:3;pointer-events:none;}
+         .offer-badge{position:absolute;top:10px;right:10px;background:#ff3f6c;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase;z-index:3;pointer-events:none;}
          .out-of-stock-badge{position:absolute;top:10px;right:10px;background:#dc3545;color:#fff;font-size:0.62rem;font-weight:700;padding:4px 8px;border-radius:4px;letter-spacing:0.05em;text-transform:uppercase;z-index:3;pointer-events:none;}
         
         .gz-card-img-wrap{width:100% !important;height:220px;overflow:hidden;background:#ffffff;position:relative;display:block;}
@@ -109,7 +109,7 @@ const ProductCard = ({ product }) => {
         
         .gz-card-price-container{display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
         .gz-card-price-original{font-size:0.72rem;text-decoration:line-through;color:#999;font-weight:400;}
-         .gz-card-price-sale{font-size:0.95rem;font-weight:800;color:#b8860b;margin:0;}
+         .gz-card-price-sale{font-size:0.95rem;font-weight:800;color:#ff3f6c;margin:0;}
          .gz-card-price-regular{font-size:0.95rem;font-weight:800;color:#0f0f0f;margin:0;}
         
         .gz-card-actions{display:flex;gap:6px;align-items:center;margin-top:auto;width:100%;}
@@ -117,8 +117,8 @@ const ProductCard = ({ product }) => {
            flex:1;
            padding:7px 12px;
            border-radius:20px;
-           border:1.5px solid #b8860b;
-           background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%);
+           border:1.5px solid var(--pink-accent, #d4608a);
+           background: var(--pink-accent, #d4608a);
            color: #fff;
            font-size:0.72rem;
            font-weight:700;
@@ -127,13 +127,13 @@ const ProductCard = ({ product }) => {
            cursor:pointer;
            transition:all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
            text-align:center;
-           box-shadow: 0 4px 10px rgba(184, 134, 11, 0.15);
+           box-shadow: 0 4px 10px rgba(212, 96, 138, 0.15);
          }
          .gz-btn-add-new:hover {
-           background: linear-gradient(135deg, #9a7009 0%, #b8921e 100%);
-           border-color: #9a7009;
+           background: #c34f77;
+           border-color: #c34f77;
            transform: translateY(-1px);
-           box-shadow: 0 6px 14px rgba(184, 134, 11, 0.25);
+           box-shadow: 0 6px 14px rgba(212, 96, 138, 0.25);
          }
          .gz-btn-add-new:disabled {
            border-color:#ccc;

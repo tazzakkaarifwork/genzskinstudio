@@ -481,8 +481,8 @@ const Home = () => {
         @media (max-width:480px)  { .ref-card-grid { grid-template-columns: 1fr; } }
 
         .ref-card { background:#fff; border-radius:12px; border:1px solid #e8e8e8; overflow:hidden; transition:all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position:relative; height:100%; display:flex; flex-direction:column; box-shadow: 0 2px 8px rgba(0,0,0,0.02); max-width: 270px; width: 100%; margin: 0 auto; }
-        .ref-card:hover { border-color: #b8860b; box-shadow: 0 12px 28px rgba(184, 134, 11, 0.12); transform:translateY(-5px); }
-        .ref-card-tag { position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%); color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; z-index:3; pointer-events:none; }
+        .ref-card:hover { border-color:#0f0f0f; box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform:translateY(-4px); }
+        .ref-card-tag { position:absolute; top:10px; right:10px; background:#ff3f6c; color:#fff; font-size:0.62rem; font-weight:700; padding:4px 8px; border-radius:4px; letter-spacing:0.05em; text-transform:uppercase; z-index:3; pointer-events:none; }
         
         .ref-card-img-wrap { width:100% !important; height:220px; background:#ffffff; position:relative; display:block; overflow:hidden; }
         .ref-card-img-wrap img { width:100% !important; height:100% !important; object-fit:contain !important; padding: 4px; transition:transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease; }
@@ -505,13 +505,13 @@ const Home = () => {
         .ref-card-meta { display:flex; align-items:center; gap:4px; margin-bottom:0; }
         .ref-card-price { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
         .ref-card-price-original { font-size:0.72rem; text-decoration:line-through; color:#999; font-weight:400; }
-        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#b8860b; margin:0; }
+        .ref-card-price-sale { font-size:0.95rem; font-weight:800; color:#ff3f6c; margin:0; }
         .ref-card-price-regular { font-size:0.95rem; font-weight:800; color:#0f0f0f; margin:0; }
         
         .ref-card-actions { margin-top:auto; display:flex; gap:6px; align-items:center; width:100%; }
         
-        .ref-btn-cart { flex:1; padding:7px 12px; border-radius:20px; border:1.5px solid #b8860b; background: linear-gradient(135deg, #b8860b 0%, #c9a84c 100%); color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-align:center; box-shadow: 0 4px 10px rgba(184,134,11,0.15); }
-        .ref-btn-cart:hover { background: linear-gradient(135deg, #9a7009 0%, #b8921e 100%); border-color: #9a7009; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(184,134,11,0.25); }
+        .ref-btn-cart { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid var(--pink-accent, #d4608a); background: var(--pink-accent, #d4608a); color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.25s ease; text-align:center; box-shadow: 0 4px 10px rgba(212,96,138,0.15); }
+        .ref-btn-cart:hover { background: #c34f77; border-color: #c34f77; transform: translateY(-1px); box-shadow: 0 6px 14px rgba(212,96,138,0.25); }
         .ref-btn-cart:disabled { border-color:#ccc; color:#ccc; background:#fff; cursor:not-allowed; box-shadow: none; }
         .ref-btn-buy  { flex:1; padding:6px 12px; border-radius:20px; border:1.5px solid #0f0f0f; background:#0f0f0f; color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; text-transform:uppercase; cursor:pointer; transition:all 0.2s ease; text-align:center; text-decoration:none; }
         .ref-btn-buy:hover { background:#333333; color:#fff; }
@@ -532,8 +532,8 @@ const Home = () => {
         }
  
         .ref-wishlist-btn { position:absolute; top:10px; left:10px; width:28px; height:28px; border-radius:50%; background:rgba(255,255,255,0.9); border:1px solid #e0e0e0; display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:4; font-size:1rem; transition:all 0.2s ease; color:#888; padding:0; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-        .ref-wishlist-btn:hover { transform:scale(1.1); background:#fff; color:#b8860b; border-color:#b8860b; }
-        .ref-wishlist-btn.active { color:#b8860b; background:#fffbf0; border-color:#b8860b; }
+        .ref-wishlist-btn:hover { transform:scale(1.1); background:#fff; color:#ff3f6c; border-color:#ff3f6c; }
+        .ref-wishlist-btn.active { color:#ff3f6c; background:#fff; border-color:#ff3f6c; }
         .ref-section-header {
           display: flex;
           align-items: center;
